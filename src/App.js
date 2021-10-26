@@ -1,10 +1,15 @@
-import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Details from './pages/Details'
+import Home from './pages/Home'
 
 const App = () => {
   return (
-    <div className='text-center text-8xl my-4 text-green-400 font-extralight'>
-      Hello world
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/' component={Home}/>
+        <Route path='/details'component={Details} /> 
+      </Switch>
+    </BrowserRouter>
   )
 }
 
