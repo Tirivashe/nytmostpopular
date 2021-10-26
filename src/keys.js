@@ -1,0 +1,1 @@
+export const rawPath = `https://api.nytimes.com/svc/mostpopular/v2/viewed/7.json?api-key=${process.env.REACT_APP_API_KEY}`
