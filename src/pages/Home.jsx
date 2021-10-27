@@ -4,25 +4,41 @@ import PostsList from "../components/PostsList"
 import { rawPath } from "../keys"
 
 const Home = () => {
-
-  const [state, setState] = useState('')
+  const [state, setState] = useState({posts: [], loading: false, error: false})
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(rawPath)
-      const data = await res.json()
-      setState(data.results)
-      console.log(data.results)
+
+      setState(prevState => {
+        return {...prevState, loading: true}
+      })
+      
+      try {
+        const response = await fetch(rawPath)
+        const data = await response.json()
+
+        setState(prevState => {
+          return {...prevState, posts: data.results, loading: false}
+        })
+
+      } catch (error) {
+
+        setState(prevState => {
+          return {...prevState, error: true}
+        })
+        console.error(error)
+      }
     }
 
     fetchData()
   }, [])
 
-
   return (
       <div>
         <Header />
-        { state ? <PostsList posts={state}/> : <h4 className='text-center text-8xl my-4 text-green-400 font-extralight'>Loading posts...</h4>}
+        {state.loading && <h4 className='text-center text-8xl my-4 text-green-400 font-extralight'>Loading posts...</h4>}
+        {state.error && <h4>An Error Has Occurred</h4>}
+        {state.posts && <PostsList posts={state.posts}/>}
       </div>
   )
 }
