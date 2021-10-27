@@ -5,7 +5,6 @@ const Details = () => {
   const location = useLocation()
   const history = useHistory()
   const { post } = location.state
-  console.log(post)
   const { title, abstract, published_date, byline, media } = post
   return (
     <div className='w-1/2 mx-auto flex flex-col'>
