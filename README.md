@@ -10,6 +10,17 @@ Upon downloading the project, cd into the root project folder and run
 
 to install all the dependencies used in the project
 
+After which, enter the
+
+#### /src
+
+directory and open the file named
+
+#### keys.js
+
+There will appear the raw path of the API with template literals and the API key accessed frome nvironment variables
+Replace this environment variable with your own API key to properly fetch data
+
 ## Available Scripts
 
 In the project directory, you can run:
